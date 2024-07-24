@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 400px;
+    text-align: center;
+  }
+  input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  .quiz-container {
+    display: none;
+  }
+  .question {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .options {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .option {
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <input type="text" id="email" placeholder="Enter email"><br>
+    <input type="password" id="password" placeholder="Enter password"><br>
+    <button onclick="login()">Login</button>
+    <button onclick="showCreateAccount()">Create Account</button>
+
+  </div>
+
+  <script>
+ 
+    function login() {
+      let email = document.getElementById('email').value;
+      let password = document.getElementById('password').value;
+      if (email && password) {
+        alert('Login successful!');
+        location.reload();
+      } else {
+        alert('Please enter email and password');
+      }
+      window.location.href = 'quiz-app.html'
+    }
+    function showCreateAccount() {
+  window.location.href = 'create_account.html';
+}
+  </script>
+</body>
+</html>
+

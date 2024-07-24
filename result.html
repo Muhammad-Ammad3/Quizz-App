@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Result</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+      body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 400px;
+    text-align: center;
+  }
+  .question {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .options {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .option {
+    margin-bottom: 8px;
+  }
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+    .tab-pane {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h2>Quiz Result</h2>
+    <ul class="nav nav-tabs" id="resultTabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="correct-tab" data-toggle="tab" href="#correct" role="tab" aria-controls="correct" aria-selected="true">Correct Answers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="incorrect-tab" data-toggle="tab" href="#incorrect" role="tab" aria-controls="incorrect" aria-selected="false">Incorrect Answers</a>
+      </li>
+    </ul>
+    <div class="tab-content mt-3" id="resultTabsContent">
+      <div class="tab-pane fade show active" id="correct" role="tabpanel" aria-labelledby="correct-tab">
+        <h4>Correct Answers</h4>
+        <ul id="correctAnswersList"></ul>
+      </div>
+      <div class="tab-pane fade" id="incorrect" role="tabpanel" aria-labelledby="incorrect-tab">
+        <h4>Incorrect Answers</h4>
+        <ul id="incorrectAnswersList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      displayResults();
+    });
+
+    function displayResults() {
+      let quizData = JSON.parse(localStorage.getItem('quizData')) || [];
+      let correctAnswersList = document.getElementById('correctAnswersList');
+      let incorrectAnswersList = document.getElementById('incorrectAnswersList');
+
+      quizData.forEach((question, index) => {
+        let listItem = document.createElement('li');
+        listItem.textContent = `${index + 1}. ${question.question}`;
+
+        if (question.userAnswerCorrect) {
+          listItem.classList.add('text-success');
+          correctAnswersList.appendChild(listItem);
+        } else {
+          listItem.classList.add('text-danger');
+          incorrectAnswersList.appendChild(listItem);
+        }
+      });
+    }
+  </script>
+
+ 
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
